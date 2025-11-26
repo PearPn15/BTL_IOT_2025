@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Classroom</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="top-bar">
+      <h2><i class="fas fa-lightbulb"></i> ĐIỀU KHIỂN LỚP HỌC</h2>
+      
+      <div class="segmented-control">
+        <input type="radio" name="mode" id="mode-manual" value="0" onchange="changeMode(0)">
+        <label for="mode-manual" class="manual-label">
+          <i class="fas fa-hand-pointer"></i> Thủ công
+        </label>
+        
+        <input type="radio" name="mode" id="mode-auto" value="1" onchange="changeMode(1)">
+        <label for="mode-auto" class="auto-label">
+          <i class="fas fa-robot"></i> Tự động
+        </label>
+      </div>
+    </div>
+
+    <div class="stats-container">
+      <div class="card sensor-box">
+        <div class="icon-wrap"><i class="fas fa-sun"></i></div>
+        <div class="sensor-info">
+          <span class="label">Ánh sáng hiện tại</span>
+          <span class="value" id="luxValue">0</span>
+          <span class="unit">Lux</span>
+        </div>
+      </div>
+
+      <div class="card chart-box">
+        <canvas id="luxChart"></canvas>
+      </div>
+    </div>
+
+    <div class="control-area">
+      <div class="area-title">
+        <span>SƠ ĐỒ ĐÈN TRONG LỚP</span>
+        <div id="status-indicator" class="status-badge">Đang đồng bộ...</div>
+      </div>
+
+      <div class="classroom-grid" id="gridContainer">
+        </div>
+      
+      <div class="overlay-lock" id="lockOverlay">
+        <div class="lock-msg">
+          <i class="fas fa-lock"></i><br>
+          Chế độ TỰ ĐỘNG đang bật.<br>
+          <small>Hệ thống tự điều chỉnh đèn theo cảm biến.</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

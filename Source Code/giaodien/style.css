@@ -1,0 +1,151 @@
+:root {
+  --bg-color: #f0f2f5;
+  --white: #ffffff;
+  --primary: #1a73e8; 
+  --text-dark: #202124;
+  --text-gray: #5f6368;
+  --lamp-on: #fbbc04; 
+  --lamp-off: #dadce0; 
+  --shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  margin: 0; padding: 20px;
+  display: flex; justify-content: center;
+}
+
+.container { width: 100%; max-width: 800px; }
+
+/* --- HEADER & SWITCH --- */
+.top-bar {
+  display: flex; flex-wrap: wrap; 
+  justify-content: space-between; align-items: center;
+  margin-bottom: 20px; gap: 15px;
+}
+h2 { margin: 0; color: var(--primary); font-size: 1.4rem;}
+
+/* CSS CHO THANH CHẾ ĐỘ */
+.segmented-control {
+  display: flex;
+  background: #e8eaed;
+  border-radius: 8px;
+  padding: 4px;
+  position: relative;
+  user-select: none;
+}
+.segmented-control input { display: none; }
+.segmented-control label {
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-gray);
+  transition: 0.3s;
+  display: flex; align-items: center; gap: 8px;
+}
+/* Hiệu ứng khi chọn */
+.segmented-control input:checked + label {
+  background: #1a73e8; 
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.segmented-control input:checked + label.manual-label { background: #1a73e8; }
+.segmented-control input:checked + label.auto-label { background: #2d3436; } 
+
+/* --- SENSOR & CHART --- */
+.stats-container {
+  display: flex; gap: 15px; margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.card {
+  background: var(--white); border-radius: 12px;
+  padding: 20px; box-shadow: var(--shadow);
+}
+.sensor-box {
+  flex: 1; min-width: 200px;
+  display: flex; align-items: center; gap: 20px;
+}
+.icon-wrap {
+  background: #fff8e1; color: #f9a825;
+  width: 50px; height: 50px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+.value { font-size: 2.2rem; font-weight: bold; color: var(--text-dark); }
+.unit { color: var(--text-gray); font-weight: 600; }
+.chart-box { flex: 2; min-width: 300px; height: 180px; padding: 10px 20px; }
+
+/* --- CONTROL AREA --- */
+.control-area {
+  background: var(--white); border-radius: 12px;
+  padding: 25px; box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+}
+.area-title {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; font-weight: bold; color: var(--text-gray);
+}
+.status-badge { font-size: 0.8rem; background: #e8f0fe; color: #1967d2; padding: 4px 10px; border-radius: 20px;}
+
+.classroom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* --- LIGHT ITEM (ĐÈN) --- */
+.lamp-item {
+  background: var(--bg-color);
+  border: 2px solid transparent;
+  padding: 15px; border-radius: 10px;
+  cursor: pointer; transition: 0.2s;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lamp-info { display: flex; flex-direction: column; }
+.lamp-name { font-weight: 600; font-size: 0.95rem; }
+.lamp-state-text { font-size: 0.8rem; color: var(--text-gray); margin-top: 4px;}
+
+/* Icon bóng đèn */
+.bulb-icon {
+  font-size: 1.8rem; color: #bdc3c7; transition: 0.3s;
+}
+
+/* TRẠNG THÁI BẬT (ON) */
+.lamp-item.on {
+  background: #fffcf0;
+  border-color: #fbbc04;
+  box-shadow: 0 4px 12px rgba(251, 188, 4, 0.2);
+}
+.lamp-item.on .bulb-icon {
+  color: #fbbc04; /* Màu vàng sáng */
+  text-shadow: 0 0 10px #fbbc04; /* Hiệu ứng tỏa sáng */
+  transform: scale(1.1);
+}
+.lamp-item.on .lamp-state-text { color: #f9a825; font-weight: bold; }
+
+/* TRẠNG THÁI TẮT (OFF) */
+.lamp-item.off {
+  background: #f1f3f4;
+  border-color: transparent;
+}
+
+/* --- OVERLAY KHÓA --- */
+.overlay-lock {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; 
+  pointer-events: none; 
+  transition: 0.3s;
+  z-index: 5;
+}
+
+.overlay-lock.active {
+  opacity: 1;
+  pointer-events: all;
+}
